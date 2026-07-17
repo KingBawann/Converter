@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency & Cashier App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="background-elements">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+    
+    <div class="app-container">
+        
+        <!-- Currency Converter Card (Left) -->
+        <div class="converter-card base-card">
+            <header>
+                <h1>Exchange Rate</h1>
+                <p class="subtitle">Live IQD/USD Conversion</p>
+            </header>
+
+            <div class="rate-display">
+                <div class="rate-header">
+                    <span id="current-rate-text">Loading rate...</span>
+                    <button id="edit-rate-btn" class="icon-btn" title="Edit Rate">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"></path><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"></path></svg>
+                    </button>
+                </div>
+                <div id="rate-edit-container" class="hidden">
+                    <input type="number" id="manual-rate-input" placeholder="Enter new rate">
+                    <button id="save-rate-btn" class="small-btn">Save</button>
+                </div>
+                <div class="last-updated" id="last-updated-text">--</div>
+            </div>
+
+            <div class="converter-form">
+                <div class="input-group">
+                    <div class="currency-label">
+                        <img src="https://flagcdn.com/w40/us.png" alt="USA">
+                        <span>USD</span>
+                    </div>
+                    <input type="text" id="usd-input" placeholder="0.00">
+                </div>
+                
+                <div class="input-group">
+                    <div class="currency-label">
+                        <img src="https://flagcdn.com/w40/iq.png" alt="Iraq">
+                        <span>IQD</span>
+                    </div>
+                    <input type="text" id="iqd-input" placeholder="0">
+                </div>
+            </div>
+        </div>
+
+        <!-- Cashier Card (Right) -->
+        <div class="cashier-card base-card">
+            <header>
+                <h1>Cashier Checkout</h1>
+                <p class="subtitle">Process Customer Payments</p>
+            </header>
+
+            <div class="converter-form">
+                <div class="input-group highlight-border">
+                    <div class="currency-label"><span>Item Price</span></div>
+                    <input type="text" id="cashier-price-usd" placeholder="0.00">
+                </div>
+
+                <div class="cashier-result-box prominent-box">
+                    <span class="result-label">Customer Owes:</span>
+                    <span id="cashier-owes-display" class="result-value text-red">0 IQD</span>
+                </div>
+
+                <div class="divider"></div>
+
+                <div class="payments-row">
+                    <div class="payment-col">
+                        <div class="input-group">
+                            <div class="currency-label"><span>Paid USD</span></div>
+                            <input type="text" id="cashier-paid-usd" placeholder="0.00">
+                        </div>
+                        <div class="quick-add-pills">
+                            <button class="pill-btn" data-currency="usd" data-val="1">+$1</button>
+                            <button class="pill-btn" data-currency="usd" data-val="5">+$5</button>
+                            <button class="pill-btn" data-currency="usd" data-val="10">+$10</button>
+                            <button class="pill-btn" data-currency="usd" data-val="50">+$50</button>
+                            <button class="pill-btn" data-currency="usd" data-val="100">+$100</button>
+                        </div>
+                    </div>
+
+                    <div class="payment-col">
+                        <div class="input-group">
+                            <div class="currency-label"><span>Paid IQD</span></div>
+                            <div style="display:flex; align-items:center; gap:0.5rem; width:60%; justify-content:flex-end;">
+                                <input type="text" id="cashier-paid-iqd" placeholder="0" style="width:100%; max-width:none;">
+                                <button id="add-thousands-btn" class="pill-btn" title="Add 000 (x1000)" style="flex:0 0 auto; padding:0.3rem 0.6rem; color:#60a5fa; background:rgba(59,130,246,0.15); border-color:rgba(59,130,246,0.3); font-weight:700;">10³</button>
+                            </div>
+                        </div>
+                        <div class="quick-add-pills">
+                            <button class="pill-btn" data-currency="iqd" data-val="1000">+1K</button>
+                            <button class="pill-btn" data-currency="iqd" data-val="5000">+5K</button>
+                            <button class="pill-btn" data-currency="iqd" data-val="10000">+10K</button>
+                            <button class="pill-btn" data-currency="iqd" data-val="25000">+25K</button>
+                            <button class="pill-btn" data-currency="iqd" data-val="50000">+50K</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="cashier-result-box change-box">
+                    <span class="result-label">Change to give:</span>
+                    <span id="cashier-change-display" class="result-value">0 USD <span style="color:var(--text-muted);font-size:1rem;margin:0 0.5rem">OR</span> 0 IQD</span>
+                </div>
+
+                <button id="reset-cashier-btn" class="primary-btn">Complete Transaction</button>
+            </div>
+        </div>
+
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
